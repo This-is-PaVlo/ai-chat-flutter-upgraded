@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 // Импорт кастомного провайдера для управления состоянием чата
 import 'providers/chat_provider.dart';
 // Импорт основного экрана чата
-import 'screens/chat_screen.dart';
+import 'screens/home_shell_screen.dart';
 
 // Виджет для обработки и отлова ошибок в приложении
 class ErrorBoundaryWidget extends StatelessWidget {
@@ -234,7 +234,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         // Основной экран приложения
-        home: const ChatScreen(),
+        home: const HomeShellScreen(),
       ),
     );
   }

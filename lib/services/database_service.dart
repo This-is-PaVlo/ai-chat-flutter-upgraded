@@ -179,4 +179,66 @@ class DatabaseService {
       };
     }
   }
+
+  // Метод получения детальной статистики по моделям
+  Future<List<Map<String, dynamic>>> getModelUsageStats() async {
+    try {
+      final db = await database;
+
+      final result = await db.rawQuery('''
+        SELECT
+          model_id,
+          COUNT(*) as message_count,
+          SUM(COALESCE(tokens, 0)) as total_tokens,
+          SUM(COALESCE(cost, 0)) as total_cost
+        FROM messages
+        WHERE model_id IS NOT NULL
+        GROUP BY model_id
+        ORDER BY total_tokens DESC
+      ''');
+
+      return result.map((row) {
+        return {
+          'model_id': row['model_id'] as String,
+          'message_count': row['message_count'] as int,
+          'total_tokens': row['total_tokens'] as int? ?? 0,
+          'total_cost': (row['total_cost'] as num?)?.toDouble() ?? 0.0,
+        };
+      }).toList();
+    } catch (e) {
+      debugPrint('Error getting model usage stats: $e');
+      return [];
+    }
+  }
+
+  // Метод получения расходов по дням
+  Future<List<Map<String, dynamic>>> getDailyCostStats() async {
+    try {
+      final db = await database;
+
+      final result = await db.rawQuery('''
+        SELECT
+          substr(timestamp, 1, 10) as day,
+          COUNT(*) as message_count,
+          SUM(COALESCE(tokens, 0)) as total_tokens,
+          SUM(COALESCE(cost, 0)) as total_cost
+        FROM messages
+        WHERE cost IS NOT NULL
+        GROUP BY substr(timestamp, 1, 10)
+        ORDER BY day ASC
+      ''');
+
+      return result.map((row) {
+        return {
+          'day': row['day'] as String,
+          'message_count': row['message_count'] as int,
+          'total_tokens': row['total_tokens'] as int? ?? 0,
+          'total_cost': (row['total_cost'] as num?)?.toDouble() ?? 0.0,
+        };
+      }).toList();
+    } catch (e) {
+      debugPrint('Error getting daily cost stats: $e');
+      return [];
+    }
+  }
 }

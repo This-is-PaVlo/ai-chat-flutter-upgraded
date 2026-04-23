@@ -101,17 +101,16 @@ class _MessageBubble extends StatelessWidget {
                   if (message.cost != null)
                     Consumer<ChatProvider>(
                       builder: (context, chatProvider, child) {
-                        final isVsetgpt =
-                            chatProvider.baseUrl?.contains('vsetgpt.ru') ==
-                                true;
+                        final isVsegpt = chatProvider.isVsegpt;
+
                         return Text(
                           message.cost! < 0.001
-                              ? isVsetgpt
-                                  ? 'Стоимость: <0.001₽'
+                              ? isVsegpt
+                                  ? 'Стоимость: <0.001 ₽'
                                   : 'Стоимость: <\$0.001'
-                              : isVsetgpt
-                                  ? 'Стоимость: ${message.cost!.toStringAsFixed(3)}₽'
-                                  : 'Стоимость: \$${message.cost!.toStringAsFixed(3)}',
+                              : isVsegpt
+                                  ? 'Стоимость: ${message.cost!.toStringAsFixed(3)} ₽'
+                                  : 'Стоимость: \$${message.cost!.toStringAsFixed(6)}',
                           style: const TextStyle(
                             color: Colors.white54,
                             fontSize: 11,
@@ -633,15 +632,18 @@ class ChatScreen extends StatelessWidget {
                                 ),
                                 Consumer<ChatProvider>(
                                   builder: (context, chatProvider, child) {
-                                    final isVsetgpt = chatProvider.baseUrl
-                                            ?.contains('vsetgpt.ru') ==
-                                        true;
+                                    final isVsegpt = chatProvider.isVsegpt;
+                                    final cost =
+                                        (entry.value['cost'] as num).toDouble();
+
                                     return Text(
-                                      isVsetgpt
-                                          ? 'Стоимость: ${entry.value['cost'] < 1e-8 ? '0.0' : entry.value['cost'].toStringAsFixed(8)}₽'
-                                          : 'Стоимость: \$${entry.value['cost'] < 1e-8 ? '0.0' : entry.value['cost'].toStringAsFixed(8)}',
+                                      isVsegpt
+                                          ? 'Стоимость: ${cost < 1e-8 ? '0.0' : cost.toStringAsFixed(4)} ₽'
+                                          : 'Стоимость: \$${cost < 1e-8 ? '0.0' : cost.toStringAsFixed(6)}',
                                       style: const TextStyle(
-                                          color: Colors.white70, fontSize: 12),
+                                        color: Colors.white70,
+                                        fontSize: 12,
+                                      ),
                                     );
                                   },
                                 ),
