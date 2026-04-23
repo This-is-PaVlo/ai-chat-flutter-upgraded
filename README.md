@@ -125,16 +125,16 @@ flutter run
 ## Скриншоты
 
 ### Главная страница
-Добавь сюда скриншот чата
+<img width="390" height="895" alt="Снимок экрана 2026-04-23 221148" src="https://github.com/user-attachments/assets/3d2bf53b-12bc-458b-8b0f-9959a84cafab" />
 
 ### Настройки провайдера
-Добавь сюда скриншот страницы провайдера
+<img width="390" height="895" alt="Снимок экрана 2026-04-23 221034" src="https://github.com/user-attachments/assets/87e4c203-f522-40e1-9513-15c12d79e78c" />
 
 ### Статистика токенов
-Добавь сюда скриншот страницы статистики
+<img width="390" height="895" alt="Снимок экрана 2026-04-23 221156" src="https://github.com/user-attachments/assets/3689c791-2e3e-4d00-9591-3394db48e151" />
 
 ### Расходы по дням
-Добавь сюда скриншот страницы расходов
+<img width="390" height="895" alt="Снимок экрана 2026-04-23 221204" src="https://github.com/user-attachments/assets/32ae8aa1-2291-45df-9f11-3f9a73d5a060" />
 
 ## Примечание
 
