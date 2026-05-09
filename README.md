@@ -1,68 +1,77 @@
-# AIChatFlutter - доработка мобильного AI-чата на Flutter
+# AIChatFlutter - Flutter AI Chat Application Enhancement
 
-В рамках проекта был доработан существующий Flutter-проект AIChatFlutter: приложение переведено на многостраничную структуру, добавлены настройки провайдера, экран статистики использования токенов и экран расходов по дням.
+## English
 
-## Что это за проект
+### Overview
 
-AIChatFlutter - мобильное приложение для общения с ИИ-моделями через API-провайдеров.
+This project is an enhanced version of the existing AIChatFlutter mobile application built with Flutter.
 
-Приложение поддерживает:
+The application was redesigned into a multi-page architecture and extended with:
+- provider configuration support
+- token usage analytics
+- daily cost statistics
+- local data storage
+- provider auto-detection
+
+The project works with AI providers through HTTP APIs.
+
+Supported providers:
 - OpenRouter
 - VSEGPT
 
-Пользователь может:
-- выбрать модель
-- отправлять сообщения
-- видеть количество токенов
-- отслеживать стоимость запросов
-- сохранять историю сообщений
+---
 
-## Что было сделано
+## Implemented Features
 
-Лично мной были реализованы следующие доработки:
+The following improvements were implemented:
 
-- добавлена многостраничная структура приложения
-- реализована нижняя навигация между 4 страницами
-- добавлен экран настройки провайдера и API-ключа
-- реализовано автоматическое определение провайдера по ключу
-- добавлено сохранение конфигурации провайдера через `SharedPreferences`
-- переработан API-клиент для работы не только через `.env`, но и через настройки внутри приложения
-- реализован экран статистики использования токенов по моделям
-- реализован экран расходов по дням
-- добавлено сохранение стоимости и токенов в SQLite
-- исправлен расчет стоимости запросов для VSEGPT
-- исправлена совместимость проекта с актуальной версией Flutter
+- multi-page application structure
+- bottom navigation with 4 screens
+- provider settings screen
+- API key management
+- automatic provider detection
+- provider configuration persistence using SharedPreferences
+- updated API client architecture
+- token usage statistics screen
+- daily expenses analytics
+- SQLite storage for messages and analytics
+- fixed cost calculation for VSEGPT
+- compatibility fixes for modern Flutter versions
 
-## Основной функционал
+---
 
-### Главная страница
-- чат с AI-моделью
-- выбор модели
-- отображение токенов
-- отображение стоимости ответа
-- экспорт истории
-- очистка истории
+## Main Functionality
 
-### Страница провайдера
-- ввод API-ключа
-- автоматическое определение OpenRouter / VSEGPT
-- сохранение конфигурации
-- отображение текущего провайдера
-- отображение баланса
+### Chat Screen
+- AI chat interface
+- model selection
+- token usage display
+- response cost display
+- chat history export
+- chat clearing
 
-### Страница статистики
-- общее количество сообщений
-- общее количество токенов
-- статистика по моделям
-- суммарная стоимость по моделям
+### Provider Settings Screen
+- API key input
+- OpenRouter / VSEGPT auto-detection
+- provider configuration saving
+- current provider display
+- balance display
 
-### Страница расходов
-- расходы по дням
-- количество сообщений по дням
-- количество токенов по дням
-- визуальное отображение расходов
+### Usage Statistics Screen
+- total messages count
+- total token usage
+- per-model statistics
+- total model costs
 
-## Используемые технологии
+### Daily Cost Screen
+- daily expenses
+- daily message count
+- daily token usage
+- visual analytics charts
+
+---
+
+## Technologies
 
 - Flutter
 - Dart
@@ -70,7 +79,190 @@ AIChatFlutter - мобильное приложение для общения с
 - SQLite (`sqflite`)
 - SharedPreferences
 - HTTP API
-- OpenRouter / VSEGPT
+- OpenRouter
+- VSEGPT
+
+---
+
+## Project Structure
+
+```text
+lib/
+  api/
+    openrouter_client.dart
+  models/
+    message.dart
+    provider_config.dart
+  providers/
+    chat_provider.dart
+  screens/
+    chat_screen.dart
+    home_shell_screen.dart
+    provider_settings_screen.dart
+    usage_stats_screen.dart
+    daily_cost_chart_screen.dart
+  services/
+    analytics_service.dart
+    database_service.dart
+    provider_config_service.dart
+  main.dart
+```
+
+---
+
+## Installation
+
+Clone repository:
+
+```bash
+git clone <your_repository_url>
+cd AIChatFlutter
+```
+
+Install dependencies:
+
+```bash
+flutter pub get
+```
+
+Create `.env` file based on `.env.example`
+
+Run project:
+
+```bash
+flutter run
+```
+
+The project was tested on Android Emulator API 35.
+
+---
+
+## Screenshots
+
+### Main Chat Screen
+<img width="390" height="895" alt="Main Screen" src="https://github.com/user-attachments/assets/3d2bf53b-12bc-458b-8b0f-9959a84cafab" />
+
+### Provider Settings
+<img width="390" height="895" alt="Provider Settings" src="https://github.com/user-attachments/assets/87e4c203-f522-40e1-9513-15c12d79e78c" />
+
+### Usage Statistics
+<img width="390" height="895" alt="Usage Statistics" src="https://github.com/user-attachments/assets/3689c791-2e3e-4d00-9591-3394db48e151" />
+
+### Daily Costs
+<img width="390" height="895" alt="Daily Costs" src="https://github.com/user-attachments/assets/32ae8aa1-2291-45df-9f11-3f9a73d5a060" />
+
+---
+
+## Note
+
+The project was created based on the existing educational repository AIChatFlutter.
+
+The main goal was not to create the application from scratch, but to redesign and extend the existing architecture with additional functionality.
+
+---
+
+## Original Project
+
+Original educational project:
+https://github.com/neuro-fill/AIChatFlutter
+
+---
+
+## Result
+
+The final result is a multi-page Flutter AI chat application with:
+- AI chat functionality
+- provider configuration support
+- token tracking
+- request cost analytics
+- local message storage
+- usage statistics
+
+---
+
+## Русский
+
+### Описание
+
+Проект представляет собой доработанную версию мобильного AI-чата AIChatFlutter, созданного на Flutter.
+
+Приложение было переработано в многостраничную архитектуру и дополнено:
+- настройкой AI-провайдера
+- аналитикой токенов
+- статистикой расходов
+- локальным хранением данных
+- автоматическим определением провайдера
+
+Проект работает с AI-провайдерами через HTTP API.
+
+Поддерживаемые провайдеры:
+- OpenRouter
+- VSEGPT
+
+---
+
+## Реализованные возможности
+
+В рамках проекта были реализованы:
+
+- многостраничная структура приложения
+- нижняя навигация между 4 экранами
+- экран настройки провайдера
+- управление API-ключом
+- автоматическое определение провайдера
+- сохранение конфигурации через SharedPreferences
+- переработанная архитектура API-клиента
+- экран статистики токенов
+- экран аналитики расходов
+- хранение сообщений и аналитики в SQLite
+- исправление расчета стоимости для VSEGPT
+- совместимость с современными версиями Flutter
+
+---
+
+## Основной функционал
+
+### Экран чата
+- AI-чат
+- выбор модели
+- отображение токенов
+- отображение стоимости запросов
+- экспорт истории
+- очистка истории
+
+### Экран настроек провайдера
+- ввод API-ключа
+- автоматическое определение OpenRouter / VSEGPT
+- сохранение конфигурации
+- отображение текущего провайдера
+- отображение баланса
+
+### Экран статистики
+- общее количество сообщений
+- общее количество токенов
+- статистика по моделям
+- суммарные расходы
+
+### Экран расходов
+- расходы по дням
+- количество сообщений по дням
+- количество токенов по дням
+- визуальная аналитика
+
+---
+
+## Технологии
+
+- Flutter
+- Dart
+- Provider
+- SQLite (`sqflite`)
+- SharedPreferences
+- HTTP API
+- OpenRouter
+- VSEGPT
+
+---
 
 ## Структура проекта
 
@@ -96,61 +288,56 @@ lib/
   main.dart
 ```
 
+---
+
 ## Запуск проекта
 
-1. Клонировать репозиторий:
+Клонировать репозиторий:
 
 ```bash
-git clone <ссылка_на_твой_репозиторий>
+git clone <ссылка_на_репозиторий>
 cd AIChatFlutter
 ```
 
-2. Установить зависимости:
+Установить зависимости:
 
 ```bash
 flutter pub get
 ```
 
-3. Создать файл `.env` на основе `.env.example`
+Создать `.env` на основе `.env.example`
 
-4. Запустить проект:
+Запустить проект:
 
 ```bash
 flutter run
 ```
 
-Для стабильного запуска на эмуляторе в моем случае использовался Android Emulator с API 35.
+Проект тестировался на Android Emulator API 35.
 
-## Скриншоты
-
-### Главная страница
-<img width="390" height="895" alt="Снимок экрана 2026-04-23 221148" src="https://github.com/user-attachments/assets/3d2bf53b-12bc-458b-8b0f-9959a84cafab" />
-
-### Настройки провайдера
-<img width="390" height="895" alt="Снимок экрана 2026-04-23 221034" src="https://github.com/user-attachments/assets/87e4c203-f522-40e1-9513-15c12d79e78c" />
-
-### Статистика токенов
-<img width="390" height="895" alt="Снимок экрана 2026-04-23 221156" src="https://github.com/user-attachments/assets/3689c791-2e3e-4d00-9591-3394db48e151" />
-
-### Расходы по дням
-<img width="390" height="895" alt="Снимок экрана 2026-04-23 221204" src="https://github.com/user-attachments/assets/32ae8aa1-2291-45df-9f11-3f9a73d5a060" />
+---
 
 ## Примечание
 
-Проект выполнен на базе готового учебного репозитория AIChatFlutter.  
-Основная задача работы заключалась не в создании приложения с нуля, а в доработке существующего проекта, расширении его архитектуры и добавлении нового функционала.
+Проект выполнен на основе готового учебного репозитория AIChatFlutter.
 
-## Исходная база проекта
+Основной задачей была не разработка приложения с нуля, а расширение существующей архитектуры и добавление нового функционала.
 
-Исходный учебный проект:  
-[neuro-fill/AIChatFlutter](https://github.com/neuro-fill/AIChatFlutter)
+---
+
+## Исходный проект
+
+Исходный учебный проект:
+https://github.com/neuro-fill/AIChatFlutter
+
+---
 
 ## Результат
 
-В результате был получен многостраничный Flutter-проект с:
-- рабочим AI-чатом
-- настройкой провайдера по API-ключу
+В результате был получен многостраничный Flutter AI-чат с:
+- поддержкой AI-моделей
+- настройкой провайдера
 - учетом токенов
-- учетом расходов
-- локальным хранением истории
-- аналитикой использования
+- аналитикой расходов
+- локальным хранением сообщений
+- статистикой использования
